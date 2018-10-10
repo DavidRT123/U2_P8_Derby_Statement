@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Basándote en el ejercicio 6 rectifica lo que haga falta para hacer lo mismo con las base de
+ * datos Derby.
  */
 package u2_p8_7_derby_statement;
 
@@ -28,6 +27,8 @@ public class U2_P8_7_Derby_Statement {
         Date fecha_antes = new Date();
         java.sql.Date fecha_alta = new java.sql.Date(fecha_antes.getTime());
         Float salario = Float.parseFloat(args[5]);
+        
+        //Expresión regular para verificar que la dirección de email est abien formada
         Pattern patron = Pattern.compile("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@" + "[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$");
         Boolean emailValido = patron.matcher(email).matches();
 
@@ -55,6 +56,7 @@ public class U2_P8_7_Derby_Statement {
                 s.close();
                 con.close();
 
+                System.out.println("El registro se ha introducido correctamente");
             } catch (SQLException ex) {
 
                 System.out.println("Código de error: " + ex.getErrorCode());
@@ -63,8 +65,6 @@ public class U2_P8_7_Derby_Statement {
 
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(U2_P8_7_Derby_Statement.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                System.out.println("El registro se ha introducido correctamente");
             }
         }
     }
